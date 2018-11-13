@@ -1,5 +1,10 @@
 FROM amazonlinux:2
-COPY java-1.8.0-amazon-corretto-1.8.0_192.b12-1.amzn2.x86_64.rpm /
-COPY java-1.8.0-amazon-corretto-devel-1.8.0_192.b12-1.amzn2.x86_64.rpm /
-RUN yes | yum localinstall *.rpm
+RUN yes | yum update \
+ && yes | yum install wget \
+ && wget https://d3pxv6yz143wms.cloudfront.net/java-1.8.0-amazon-corretto-1.8.0_192.b12-1.amzn2.x86_64.rpm \
+ && wget https://d3pxv6yz143wms.cloudfront.net/java-1.8.0-amazon-corretto-devel-1.8.0_192.b12-1.amzn2.x86_64.rpm \
+ && yes | yum remove wget \
+ && rpm -K java-1.8.0-amazon-corretto-1.8.0_192.b12-1.amzn2.x86_64.rpm \
+ && rpm -K java-1.8.0-amazon-corretto-devel-1.8.0_192.b12-1.amzn2.x86_64.rpm \
+ && yes | yum localinstall *.rpm
 CMD ["/bin/bash"]
