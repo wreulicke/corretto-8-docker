@@ -9,4 +9,5 @@ RUN yes | yum update \
  && yes | yum localinstall *.rpm \
  && rm java-1.8.0-amazon-corretto-1.8.0_192.b12-1.amzn2.x86_64.rpm \
        java-1.8.0-amazon-corretto-devel-1.8.0_192.b12-1.amzn2.x86_64.rpm
+ && yum clean all
 CMD ["/bin/bash"]
